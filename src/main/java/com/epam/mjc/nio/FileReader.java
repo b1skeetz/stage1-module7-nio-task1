@@ -21,6 +21,16 @@ public class FileReader {
     }
 
     public Profile getDataFromFile(File file) {
-        return new Profile();
+        Profile profile = new Profile();
+        try{
+            Map<String, String> values = getContext(file);
+            profile.setName(values.get("Name"));
+            profile.setAge(Integer.valueOf(values.get("Age")));
+            profile.setEmail(values.get("Email"));
+            profile.setPhone(Long.valueOf(values.get("Phone")));
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+        return profile;
     }
 }
